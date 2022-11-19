@@ -2,7 +2,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { DeployFunction, DeployedContract } from "hardhat-deploy/types"
 //import { network, ethers } from "hardhat"
 import callRpc from "../utils/call-rpc"
-import { developmentChains } from "../helper-hardhat-config"
+import { networkConfig, developmentChains } from "../helper-hardhat-config"
 import { network } from "hardhat"
 
 const fa = require("@glif/filecoin-address")
@@ -28,14 +28,15 @@ const deployFilMocks: DeployFunction = async (hre: HardhatRuntimeEnvironment) =>
 
     await deploy("MinerAPI", {
         from: deployer,
-        args: [deployer],
+        args: [0x0000001],
         // since it's difficult to estimate the gas before f4 address is launched, it's safer to manually set
         // a large gasLimit. This should be addressed in the following releases.
-        //gasLimit: 1000000000, // BlockGasLimit / 10
+        gasLimit: 1000000000, // BlockGasLimit / 10
         // since Ethereum's legacy transaction format is not supported on FVM, we need to specify
         // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format
-        //maxPriorityFeePerGas: priorityFee,
+        maxPriorityFeePerGas: priorityFee,
         log: true,
+        waitConfirmations: networkConfig[network.name].blockConfirmations || 1,
     })
 
     await deploy("MarketAPI", {
@@ -43,11 +44,12 @@ const deployFilMocks: DeployFunction = async (hre: HardhatRuntimeEnvironment) =>
         args: [],
         // since it's difficult to estimate the gas before f4 address is launched, it's safer to manually set
         // a large gasLimit. This should be addressed in the following releases.
-        //gasLimit: 1000000000, // BlockGasLimit / 10
+        gasLimit: 1000000000, // BlockGasLimit / 10
         // since Ethereum's legacy transaction format is not supported on FVM, we need to specify
         // maxPriorityFeePerGas to instruct hardhat to use EIP-1559 tx format
-        //maxPriorityFeePerGas: priorityFee,
+        maxPriorityFeePerGas: priorityFee,
         log: true,
+        waitConfirmations: networkConfig[network.name].blockConfirmations || 1,
     })
 }
 

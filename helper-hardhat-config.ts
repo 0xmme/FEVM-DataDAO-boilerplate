@@ -13,6 +13,9 @@ export const networkConfig: networkConfigInfo = {
     goerli: {
         blockConfirmations: 6,
     },
+    wallaby: {
+        blockConfirmations: 6,
+    },
 }
 
 export const developmentChains = ["hardhat", "localhost"]

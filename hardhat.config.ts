@@ -27,6 +27,7 @@ const config: HardhatUserConfig = {
         wallaby: {
             url: "https://wallaby.node.glif.io/rpc/v0",
             accounts: [PRIVATE_KEY],
+            chainId: 31415,
         },
         hardhat: {
             chainId: 31337,
