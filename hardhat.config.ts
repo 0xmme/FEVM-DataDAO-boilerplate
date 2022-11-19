@@ -1,10 +1,12 @@
 require("./tasks")
 
 import "@typechain/hardhat"
-import "@nomiclabs/hardhat-waffle"
 import "@nomiclabs/hardhat-etherscan"
 import "@nomiclabs/hardhat-ethers"
+
 import "@nomicfoundation/hardhat-toolbox"
+import "@nomicfoundation/hardhat-chai-matchers"
+
 import "hardhat-gas-reporter"
 import "dotenv/config"
 import "solidity-coverage"
