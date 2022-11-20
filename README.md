@@ -1,4 +1,4 @@
-# dataDAO boilerplate hardhat kit
+# FEVM DataDAO boilerplate
 
 
 *This has been updated to work with Wallaby FEVM network*
